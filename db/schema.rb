@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_05_16_195112) do
+ActiveRecord::Schema.define(version: 2022_05_16_195537) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "citext"
@@ -40,6 +40,22 @@ ActiveRecord::Schema.define(version: 2022_05_16_195112) do
     t.index ["owner_id"], name: "index_houses_on_owner_id"
   end
 
+  create_table "projects", force: :cascade do |t|
+    t.text "description"
+    t.string "status"
+    t.date "date_started"
+    t.date "date_completed"
+    t.text "notes"
+    t.string "priority"
+    t.float "estimated_cost"
+    t.bigint "house_id", null: false
+    t.bigint "contact_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["contact_id"], name: "index_projects_on_contact_id"
+    t.index ["house_id"], name: "index_projects_on_house_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -57,4 +73,6 @@ ActiveRecord::Schema.define(version: 2022_05_16_195112) do
 
   add_foreign_key "contacts", "users", column: "owner_id"
   add_foreign_key "houses", "users", column: "owner_id"
+  add_foreign_key "projects", "contacts"
+  add_foreign_key "projects", "houses"
 end
