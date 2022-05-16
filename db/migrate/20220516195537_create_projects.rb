@@ -8,8 +8,8 @@ class CreateProjects < ActiveRecord::Migration[6.1]
       t.text :notes
       t.string :priority
       t.float :estimated_cost
-      t.references :house, null: false, foreign_key: true
-      t.references :contact, null: false, foreign_key: true
+      t.references :house, null: false, foreign_key: true, index: true
+      t.references :contact, null: false, foreign_key: true, index: true
 
       t.timestamps
     end
