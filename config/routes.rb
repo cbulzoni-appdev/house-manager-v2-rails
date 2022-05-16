@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+
+  root "houses#index"
+  
   resources :appliances
   resources :projects
   resources :contacts
