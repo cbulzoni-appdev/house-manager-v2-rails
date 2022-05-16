@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :appliances
   resources :projects
   resources :contacts
   resources :houses

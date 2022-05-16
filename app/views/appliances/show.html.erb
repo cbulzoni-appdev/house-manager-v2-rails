@@ -1,0 +1,54 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Category:</strong>
+  <%= @appliance.category %>
+</p>
+
+<p>
+  <strong>Type:</strong>
+  <%= @appliance.type %>
+</p>
+
+<p>
+  <strong>Make:</strong>
+  <%= @appliance.make %>
+</p>
+
+<p>
+  <strong>Model:</strong>
+  <%= @appliance.model %>
+</p>
+
+<p>
+  <strong>Year:</strong>
+  <%= @appliance.year %>
+</p>
+
+<p>
+  <strong>Last serviced:</strong>
+  <%= @appliance.last_serviced %>
+</p>
+
+<p>
+  <strong>Service due:</strong>
+  <%= @appliance.service_due %>
+</p>
+
+<p>
+  <strong>Notes:</strong>
+  <%= @appliance.notes %>
+</p>
+
+<p>
+  <strong>House:</strong>
+  <%= @appliance.house_id %>
+</p>
+
+<p>
+  <strong>Contact:</strong>
+  <%= @appliance.contact_id %>
+</p>
+
+<%= link_to 'Edit', edit_appliance_path(@appliance) %> |
+<%= link_to 'Back', appliances_path %>

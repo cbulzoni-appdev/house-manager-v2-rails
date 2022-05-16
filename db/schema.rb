@@ -10,11 +10,28 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_05_16_195537) do
+ActiveRecord::Schema.define(version: 2022_05_16_195735) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "citext"
   enable_extension "plpgsql"
+
+  create_table "appliances", force: :cascade do |t|
+    t.string "category"
+    t.string "type"
+    t.string "make"
+    t.string "model"
+    t.integer "year"
+    t.date "last_serviced"
+    t.date "service_due"
+    t.text "notes"
+    t.bigint "house_id", null: false
+    t.bigint "contact_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["contact_id"], name: "index_appliances_on_contact_id"
+    t.index ["house_id"], name: "index_appliances_on_house_id"
+  end
 
   create_table "contacts", force: :cascade do |t|
     t.string "company_name"
@@ -71,6 +88,8 @@ ActiveRecord::Schema.define(version: 2022_05_16_195537) do
     t.index ["username"], name: "index_users_on_username", unique: true
   end
 
+  add_foreign_key "appliances", "contacts"
+  add_foreign_key "appliances", "houses"
   add_foreign_key "contacts", "users", column: "owner_id"
   add_foreign_key "houses", "users", column: "owner_id"
   add_foreign_key "projects", "contacts"
