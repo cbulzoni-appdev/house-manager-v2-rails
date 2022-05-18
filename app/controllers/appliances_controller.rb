@@ -65,6 +65,6 @@ class AppliancesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def appliance_params
-      params.require(:appliance).permit(:category, :type, :make, :model, :year, :last_serviced, :service_due, :notes, :house_id, :contact_id)
+      params.require(:appliance).permit(:category, :appliance_type, :make, :model, :year, :last_serviced, :service_due, :notes, :house_id, :contact_id)
     end
 end
