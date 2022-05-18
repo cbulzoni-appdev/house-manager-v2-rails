@@ -67,6 +67,7 @@ task sample_data: :environment do
       
       service_date = Faker::Date.between(from: '2019-01-01', to: '2022-05-01')
 
+
       appliance = user.houses.first.appliances.create(
         category: appliance_category,
         appliance_type: appliance_type,
@@ -75,21 +76,40 @@ task sample_data: :environment do
         year: 2015,
         last_serviced: service_date,
         service_due: service_date + 1.years,
-        notes: Faker::Lorem.sentences(number: 1),
+        notes: Faker::Lorem.paragraph(sentence_count: 1),
         contact_id: user.contacts.sample.id
       )
     end
 
-    project = user.houses.first.projects.create(
-        description: "My project",
-        status: "In Progress",
-        date_started: Faker::Date.between(from: '2019-01-01', to: '2022-05-01'),
-        #date_completed:
-        notes: "My notes",
-        priority: "High",
-        estimated_cost: 135,
-        contact_id: user.contacts.sample.id
-    )
+    statuses = ["In Progress", "Not Yet Started", "Completed"]
+    priorities = ["High", "Med", "Low"]
+
+    10.times do
+      status = statuses.sample
+      priority = priorities.sample
+      
+      if status == "Not Yet Started"
+        date_started =  nil
+        date_completed = nil
+      elsif status == "In Progress"
+        date_started = Faker::Date.between(from: Date.today - 2.months, to: Date.today)
+        date_completed = nil
+      elsif status == "Completed"
+        date_started = Faker::Date.between(from: Date.today - 2.years, to: Date.today - 1.months)
+        date_completed = Faker::Date.between(from: date_started , to: date_started + 1.months)
+      end
+
+      project = user.houses.first.projects.create(
+          description: Faker::Lorem.paragraph(sentence_count: 1),
+          status: status,
+          date_started: date_started,
+          date_completed: date_completed,
+          notes: Faker::Lorem.paragraph(sentence_count: 2),
+          priority: priority,
+          estimated_cost: rand(50...5000),
+          contact_id: user.contacts.sample.id
+      )
+    end
   end
 
   ending = Time.now
