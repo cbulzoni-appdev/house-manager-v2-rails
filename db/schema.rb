@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_05_16_195735) do
+ActiveRecord::Schema.define(version: 2022_05_18_133534) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "citext"
@@ -18,7 +18,7 @@ ActiveRecord::Schema.define(version: 2022_05_16_195735) do
 
   create_table "appliances", force: :cascade do |t|
     t.string "category"
-    t.string "type"
+    t.string "appliance_type"
     t.string "make"
     t.string "model"
     t.integer "year"
