@@ -1,0 +1,30 @@
+# == Schema Information
+#
+# Table name: houses
+#
+#  id             :bigint           not null, primary key
+#  street_address :string
+#  city           :string
+#  state          :string
+#  zip_code       :string
+#  purchase_date  :date
+#  owner_id       :bigint           not null
+#  created_at     :datetime         not null
+#  updated_at     :datetime         not null
+#
+
+one:
+  street_address: MyString
+  city: MyString
+  state: MyString
+  zip_code: MyString
+  purchase_date: 2022-05-16
+  owner: one
+
+two:
+  street_address: MyString
+  city: MyString
+  state: MyString
+  zip_code: MyString
+  purchase_date: 2022-05-16
+  owner: two

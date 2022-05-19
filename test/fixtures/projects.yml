@@ -1,0 +1,39 @@
+# == Schema Information
+#
+# Table name: projects
+#
+#  id             :bigint           not null, primary key
+#  description    :text
+#  status         :string
+#  date_started   :date
+#  date_completed :date
+#  notes          :text
+#  priority       :string
+#  estimated_cost :float
+#  house_id       :bigint           not null
+#  contact_id     :bigint           not null
+#  created_at     :datetime         not null
+#  updated_at     :datetime         not null
+#
+
+one:
+  description: MyText
+  status: MyString
+  date_started: 2022-05-16
+  date_completed: 2022-05-16
+  notes: MyText
+  priority: MyString
+  estimated_cost: 1.5
+  house: one
+  contact: one
+
+two:
+  description: MyText
+  status: MyString
+  date_started: 2022-05-16
+  date_completed: 2022-05-16
+  notes: MyText
+  priority: MyString
+  estimated_cost: 1.5
+  house: two
+  contact: two
