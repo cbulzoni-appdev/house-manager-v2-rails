@@ -18,17 +18,17 @@
 
   <div class="field">
     <%= form.label :status %>
-    <%= form.text_field :status %>
+    <%= form.select :status, ['Not Yet Started','In Progress','Completed'], include_blank: true %>
   </div>
 
   <div class="field">
     <%= form.label :date_started %>
-    <%= form.date_select :date_started %>
+    <%= form.date_select :date_started, include_blank: true %>
   </div>
-
+  
   <div class="field">
     <%= form.label :date_completed %>
-    <%= form.date_select :date_completed %>
+    <%= form.date_select :date_completed, include_blank: true %>
   </div>
 
   <div class="field">
@@ -38,7 +38,7 @@
 
   <div class="field">
     <%= form.label :priority %>
-    <%= form.text_field :priority %>
+    <%= form.select :category, ['High','Medium','Low'], :prompt => 'Select One' %>
   </div>
 
   <div class="field">
@@ -48,12 +48,12 @@
 
   <div class="field">
     <%= form.label :house_id %>
-    <%= form.text_field :house_id %>
+    <%= form.select :house_id, current_user.houses.collect {|h| [h.street_address, h.id] }, include_blank: true %>
   </div>
 
   <div class="field">
     <%= form.label :contact_id %>
-    <%= form.text_field :contact_id %>
+    <%= form.select :contact_id, current_user.contacts.collect {|c| [c.contact_name, c.id] }, include_blank: true %>
   </div>
 
   <div class="actions">
