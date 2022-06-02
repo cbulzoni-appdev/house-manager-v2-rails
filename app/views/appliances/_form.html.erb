@@ -13,12 +13,12 @@
 
   <div class="field">
     <%= form.label :category %>
-    <%= form.text_field :category %>
+    <%= form.select :category, ['Mechanical','Kitchen','Laundry','Other'], :prompt => 'Select One' %>
   </div>
 
   <div class="field">
     <%= form.label :appliance_type %>
-    <%= form.text_field :appliance_type %>
+    <%= form.select :appliance_type, @possible_appliance_types.map {|value| [value,value]}, :prompt => 'Select One' %>
   </div>
 
   <div class="field">
@@ -42,23 +42,13 @@
   </div>
 
   <div class="field">
-    <%= form.label :service_due %>
-    <%= form.date_select :service_due %>
-  </div>
-
-  <div class="field">
     <%= form.label :notes %>
     <%= form.text_area :notes %>
   </div>
 
   <div class="field">
-    <%= form.label :house_id %>
-    <%= form.text_field :house_id %>
-  </div>
-
-  <div class="field">
     <%= form.label :contact_id %>
-    <%= form.text_field :contact_id %>
+    <%= form.select :contact_id, current_user.contacts.collect {|c| [c.contact_name, c.id] }, include_blank: true %>
   </div>
 
   <div class="actions">

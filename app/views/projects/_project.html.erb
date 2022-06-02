@@ -1,9 +1,13 @@
 <div class="card" style="width: 18rem;">
   <div class="card-body">
     <h5 class="card-title"><%= project.description %></h5>
-    <h6 class="card-subtitle mb-2 text-muted"><%= project.status %></h6>
-    <p class="card-text"><%= project.notes %></p>
-    <a href="#" class="card-link">Card link</a>
-    <a href="#" class="card-link">Another link</a>
+    <h6 class="card-subtitle mb-2 text-muted">Priority: <%= project.priority %></h6>
+    <p class="card-text">Notes: <%= project.notes %></p>
+    <p class="card-text">Estimated Cost: <%= project.estimated_cost %></p>
+    <%if project.contact.present? %>
+      <p class="card-text">Contact: <%= project.contact.contact_name %></p>
+    <% end %>
+    <%= link_to "Edit", edit_project_path(project.id), class: "card-link" %>
+    <%= link_to 'Delete', project, method: :delete, data: { confirm: 'Are you sure?' }, class: "card-link" %>
   </div>
 </div>

@@ -8,9 +8,12 @@
     <li class="list-group-item">Model: <%= appliance.model %></li>
     <li class="list-group-item">Last Serviced: <%= appliance.last_serviced %></li>
     <li class="list-group-item">Service Due: <%= appliance.service_due %></li>
+    <% if appliance.contact_id.present? %>
+      <li class="list-group-item">Contact: <%= appliance.contact.contact_name %></li>
+    <% end %>
   </ul>
   <div class="card-body">
-    <a href="#" class="card-link">Card link</a>
-    <a href="#" class="card-link">Another link</a>
+    <%= link_to "Edit", edit_appliance_path(appliance.id), class: "card-link" %>
+    <%= link_to 'Delete', appliance, method: :delete, data: { confirm: 'Are you sure?' }, class: "card-link" %>
   </div>
 </div>

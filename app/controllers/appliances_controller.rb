@@ -1,6 +1,8 @@
 class AppliancesController < ApplicationController
   before_action :set_appliance, only: %i[ show edit update destroy ]
 
+  
+                                
   # GET /appliances or /appliances.json
   def index
     @appliances = current_user.appliances
@@ -13,15 +15,21 @@ class AppliancesController < ApplicationController
   # GET /appliances/new
   def new
     @appliance = Appliance.new
+    @possible_appliance_types = ["Air Conditioner","Water Heater","Sump Pump","Furnace","Range","Oven",
+                                "Stove","Microwave","Dishwasher","Washing Machine","Dryer","Other"]
   end
 
   # GET /appliances/1/edit
   def edit
+    @possible_appliance_types = ["Air Conditioner","Water Heater","Sump Pump","Furnace","Range","Oven",
+                                "Stove","Microwave","Dishwasher","Washing Machine","Dryer","Other"]
   end
 
   # POST /appliances or /appliances.json
   def create
     @appliance = Appliance.new(appliance_params)
+    @appliance.house_id = current_user.houses.first.id
+    @appliance.service_due = @appliance.last_serviced + 1.years
 
     respond_to do |format|
       if @appliance.save

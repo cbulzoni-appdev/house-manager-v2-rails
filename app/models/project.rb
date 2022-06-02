@@ -12,7 +12,7 @@
 #  status         :string
 #  created_at     :datetime         not null
 #  updated_at     :datetime         not null
-#  contact_id     :bigint           not null
+#  contact_id     :bigint
 #  house_id       :bigint           not null
 #
 # Indexes
@@ -27,6 +27,6 @@
 #
 class Project < ApplicationRecord
   belongs_to :house
-  belongs_to :contact
+  belongs_to :contact, required: false
   has_one :owner, through: :house
 end

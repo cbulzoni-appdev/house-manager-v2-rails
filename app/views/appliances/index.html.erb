@@ -20,16 +20,14 @@
   <% end %>
 </div>
 
-<% @appliances[3...].each_slice(3) do |array_of_3_appliances| %>
-  <div class="row mb-4">
-    <% array_of_3_appliances.each do |appliance| %>
-      <div class="col-md-2 offset-md-1">
-        <%= render "appliances/appliance", appliance: appliance %>
-      </div>
-    <% end %>
-  </div>
+<% if @appliances.length > 2 %>
+  <% @appliances[3...].each_slice(3) do |array_of_3_appliances| %>
+    <div class="row mb-4">
+      <% array_of_3_appliances.each do |appliance| %>
+        <div class="col-md-2 offset-md-1">
+          <%= render "appliances/appliance", appliance: appliance %>
+        </div>
+      <% end %>
+    </div>
+  <% end %>
 <% end %>
-
-<br>
-
-<%= link_to 'New Appliance', new_appliance_path %>
