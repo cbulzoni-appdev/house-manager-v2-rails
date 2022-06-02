@@ -2,41 +2,20 @@
 
 <h1>Projects</h1>
 
-<table>
-  <thead>
-    <tr>
-      <th>Description</th>
-      <th>Status</th>
-      <th>Date started</th>
-      <th>Date completed</th>
-      <th>Notes</th>
-      <th>Priority</th>
-      <th>Estimated cost</th>
-      <th>House</th>
-      <th>Contact</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
+<% project_status_options = ["In Progress", "Not Yet Started", "Completed"]%>
 
-  <tbody>
-    <% @projects.each do |project| %>
-      <tr>
-        <td><%= project.description %></td>
-        <td><%= project.status %></td>
-        <td><%= project.date_started %></td>
-        <td><%= project.date_completed %></td>
-        <td><%= project.notes %></td>
-        <td><%= project.priority %></td>
-        <td><%= project.estimated_cost %></td>
-        <td><%= project.house_id %></td>
-        <td><%= project.contact_id %></td>
-        <td><%= link_to 'Show', project %></td>
-        <td><%= link_to 'Edit', edit_project_path(project) %></td>
-        <td><%= link_to 'Destroy', project, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+<% project_status_options.each do |status_option| %>
+  <h5><%= status_option %></h5>
+  <% @projects.where({ :status => status_option }).each_slice(3) do |array_of_3_ip_projects| %>
+    <div class="row mb-3">
+      <% array_of_3_ip_projects.each do |project| %>
+        <div class="col-md-2 offset-md-1">
+          <%= render "projects/project", project: project %>
+        </div>
+      <% end %>
+    </div>
+  <% end %>
+<% end %>
 
 <br>
 

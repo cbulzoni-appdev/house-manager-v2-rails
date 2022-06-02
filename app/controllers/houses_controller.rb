@@ -3,11 +3,12 @@ class HousesController < ApplicationController
 
   # GET /houses or /houses.json
   def index
-    @houses = House.all
+    @houses = current_user.houses
   end
 
   # GET /houses/1 or /houses/1.json
   def show
+    authorize @house
   end
 
   # GET /houses/new

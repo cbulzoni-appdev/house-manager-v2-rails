@@ -3,7 +3,7 @@ class AppliancesController < ApplicationController
 
   # GET /appliances or /appliances.json
   def index
-    @appliances = Appliance.all
+    @appliances = current_user.appliances
   end
 
   # GET /appliances/1 or /appliances/1.json
