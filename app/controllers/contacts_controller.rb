@@ -3,7 +3,7 @@ class ContactsController < ApplicationController
 
   # GET /contacts or /contacts.json
   def index
-    @contacts = Contact.all
+    @contacts = current_user.contacts
   end
 
   # GET /contacts/1 or /contacts/1.json
@@ -22,6 +22,7 @@ class ContactsController < ApplicationController
   # POST /contacts or /contacts.json
   def create
     @contact = Contact.new(contact_params)
+    @contact.owner = current_user
 
     respond_to do |format|
       if @contact.save

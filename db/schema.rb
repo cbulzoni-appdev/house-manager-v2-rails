@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_05_18_133534) do
+ActiveRecord::Schema.define(version: 2022_06_02_155703) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "citext"
@@ -26,7 +26,7 @@ ActiveRecord::Schema.define(version: 2022_05_18_133534) do
     t.date "service_due"
     t.text "notes"
     t.bigint "house_id", null: false
-    t.bigint "contact_id", null: false
+    t.bigint "contact_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["contact_id"], name: "index_appliances_on_contact_id"

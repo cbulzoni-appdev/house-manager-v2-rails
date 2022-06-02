@@ -13,7 +13,7 @@
 #  year           :integer
 #  created_at     :datetime         not null
 #  updated_at     :datetime         not null
-#  contact_id     :bigint           not null
+#  contact_id     :bigint
 #  house_id       :bigint           not null
 #
 # Indexes
