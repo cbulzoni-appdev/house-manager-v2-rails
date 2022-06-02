@@ -5,15 +5,17 @@
 <% project_status_options = ["In Progress", "Not Yet Started", "Completed"]%>
 
 <% project_status_options.each do |status_option| %>
-  <h5><%= status_option %></h5>
-  <% @projects.where({ :status => status_option }).each_slice(3) do |array_of_3_ip_projects| %>
-    <div class="row mb-3">
-      <% array_of_3_ip_projects.each do |project| %>
-        <div class="col-md-2 offset-md-1">
-          <%= render "projects/project", project: project %>
-        </div>
-      <% end %>
-    </div>
+  <% if @projects.where({ :status => status_option }).present? %>
+    <h5><%= status_option %></h5>
+    <% @projects.where({ :status => status_option }).each_slice(3) do |array_of_3_ip_projects| %>
+      <div class="row mb-3">
+        <% array_of_3_ip_projects.each do |project| %>
+          <div class="col-md-2 offset-md-1">
+            <%= render "projects/project", project: project %>
+          </div>
+        <% end %>
+      </div>
+    <% end %>
   <% end %>
 <% end %>
 
