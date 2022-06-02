@@ -8,9 +8,7 @@ class HousesController < ApplicationController
 
   # GET /houses/1 or /houses/1.json
   def show
-    unless HousePolicy.new(current_user, @house).show?
-      raise Pundit::NotAuthorizedError, "not allowed"
-    end
+    authorize @house
   end
 
   # GET /houses/new
