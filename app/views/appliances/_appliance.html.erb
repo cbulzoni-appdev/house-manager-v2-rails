@@ -13,7 +13,7 @@
     <% end %>
   </ul>
   <div class="card-body">
-    <%= link_to "Edit", edit_appliance_path(appliance.id), class: "card-link", remote: true %>
-    <%= link_to 'Delete', appliance, method: :delete, class: "card-link" %>
+    <%= link_to "Edit", edit_appliance_path(appliance.id), class: "card-link" %>
+    <%= link_to 'Delete', appliance, method: :delete, class: "card-link", remote: true %>
   </div>
 </div>
