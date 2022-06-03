@@ -4,30 +4,4 @@
   <h1>Appliances</h1>
 </div> 
 
-<div class="row mb-4">
-  <div class="col-md-2 offset-md-1">
-    <div class="card" style="width: 18rem" id="new_appliance_button">
-      <%= link_to new_appliance_path, class: "card-image-top", remote: true do %>
-        <h5>Add New Appliance</h5>
-        <img src="https://media.istockphoto.com/vectors/black-plus-sign-positive-symbol-vector-id688550958?k=20&m=688550958&s=612x612&w=0&h=wvzUqT3u3feYygOXg3GB9pYBbqIsyu_xpvfTX-6HOd0=" class="card-img-bottom">
-      <% end %>
-    </div>
-  </div>
-  <% @appliances[0...2].each do |appliance| %>
-      <div class="col-md-2 offset-md-1">
-        <%= render "appliances/appliance", appliance: appliance %>
-      </div>
-  <% end %>
-</div>
-
-<% if @appliances.length > 2 %>
-  <% @appliances[3...].each_slice(3) do |array_of_3_appliances| %>
-    <div class="row mb-4">
-      <% array_of_3_appliances.each do |appliance| %>
-        <div class="col-md-2 offset-md-1">
-          <%= render "appliances/appliance", appliance: appliance %>
-        </div>
-      <% end %>
-    </div>
-  <% end %>
-<% end %>
+<%= render "appliances/all_appliances", appliances: @appliances %>
