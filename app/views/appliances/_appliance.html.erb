@@ -1,4 +1,4 @@
-<div class="card" style="width: 18rem;">
+<div id="<%= dom_id(appliance) %>" class="card" style="width: 18rem;">
   <img src="..." class="card-img-top" alt="...">
   <div class="card-body">
     <h5 class="card-title"><%= appliance.appliance_type %></h5>
@@ -13,7 +13,7 @@
     <% end %>
   </ul>
   <div class="card-body">
-    <%= link_to "Edit", edit_appliance_path(appliance.id), class: "card-link" %>
-    <%= link_to 'Delete', appliance, method: :delete, data: { confirm: 'Are you sure?' }, class: "card-link" %>
+    <%= link_to "Edit", edit_appliance_path(appliance.id), class: "card-link", remote: true %>
+    <%= link_to 'Delete', appliance, method: :delete, class: "card-link" %>
   </div>
 </div>
