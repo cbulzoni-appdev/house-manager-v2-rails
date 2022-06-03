@@ -53,6 +53,7 @@ class AppliancesController < ApplicationController
       if @appliance.update(appliance_params)
         format.html { redirect_to appliance_url(@appliance), notice: "Appliance was successfully updated." }
         format.json { render :show, status: :ok, location: @appliance }
+        format.js
       else
         format.html { render :edit, status: :unprocessable_entity }
         format.json { render json: @appliance.errors, status: :unprocessable_entity }

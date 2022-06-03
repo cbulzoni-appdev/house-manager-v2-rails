@@ -1,57 +1,59 @@
-<%= form_with(model: appliance) do |form| %>
-  <% if appliance.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(appliance.errors.count, "error") %> prohibited this appliance from being saved:</h2>
+<div id="<%= dom_id(appliance) %>_form">
+  <%= form_with(model: appliance, local: false) do |form| %>
+    <% if appliance.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(appliance.errors.count, "error") %> prohibited this appliance from being saved:</h2>
 
-      <ul>
-        <% appliance.errors.each do |error| %>
-          <li><%= error.full_message %></li>
-        <% end %>
-      </ul>
+        <ul>
+          <% appliance.errors.each do |error| %>
+            <li><%= error.full_message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    <div class="field">
+      <%= form.label :category %>
+      <%= form.select :category, ['Mechanical','Kitchen','Laundry','Other'], :prompt => 'Select One' %>
+    </div>
+
+    <div class="field">
+      <%= form.label :appliance_type %>
+      <%= form.select :appliance_type, @possible_appliance_types.map {|value| [value,value]}, :prompt => 'Select One' %>
+    </div>
+
+    <div class="field">
+      <%= form.label :make %>
+      <%= form.text_field :make %>
+    </div>
+
+    <div class="field">
+      <%= form.label :model %>
+      <%= form.text_field :model %>
+    </div>
+
+    <div class="field">
+      <%= form.label :year %>
+      <%= form.number_field :year %>
+    </div>
+
+    <div class="field">
+      <%= form.label :last_serviced %>
+      <%= form.date_select :last_serviced %>
+    </div>
+
+    <div class="field">
+      <%= form.label :notes %>
+      <%= form.text_area :notes %>
+    </div>
+
+    <div class="field">
+      <%= form.label :contact_id %>
+      <%= form.select :contact_id, current_user.contacts.collect {|c| [c.contact_name, c.id] }, include_blank: true %>
+    </div>
+
+    <div class="actions">
+      <%= form.submit %>
     </div>
   <% end %>
-
-  <div class="field">
-    <%= form.label :category %>
-    <%= form.select :category, ['Mechanical','Kitchen','Laundry','Other'], :prompt => 'Select One' %>
-  </div>
-
-  <div class="field">
-    <%= form.label :appliance_type %>
-    <%= form.select :appliance_type, @possible_appliance_types.map {|value| [value,value]}, :prompt => 'Select One' %>
-  </div>
-
-  <div class="field">
-    <%= form.label :make %>
-    <%= form.text_field :make %>
-  </div>
-
-  <div class="field">
-    <%= form.label :model %>
-    <%= form.text_field :model %>
-  </div>
-
-  <div class="field">
-    <%= form.label :year %>
-    <%= form.number_field :year %>
-  </div>
-
-  <div class="field">
-    <%= form.label :last_serviced %>
-    <%= form.date_select :last_serviced %>
-  </div>
-
-  <div class="field">
-    <%= form.label :notes %>
-    <%= form.text_area :notes %>
-  </div>
-
-  <div class="field">
-    <%= form.label :contact_id %>
-    <%= form.select :contact_id, current_user.contacts.collect {|c| [c.contact_name, c.id] }, include_blank: true %>
-  </div>
-
-  <div class="actions">
-    <%= form.submit %>
-  </div>
-<% end %>
+</div>
