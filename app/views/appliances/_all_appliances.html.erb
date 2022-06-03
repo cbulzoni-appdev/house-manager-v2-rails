@@ -1,0 +1,15 @@
+<div class="row mb-4" id="all_appliances">
+  <div class="col-md-4" id="new_appliance_card">
+    <div class="card" style="width: 18em;" id="new_appliance_button">
+      <%= link_to new_appliance_path, class: "card-image-top", remote: true do %>
+        <h5>Add New Appliance</h5>
+        <img src="https://media.istockphoto.com/vectors/black-plus-sign-positive-symbol-vector-id688550958?k=20&m=688550958&s=612x612&w=0&h=wvzUqT3u3feYygOXg3GB9pYBbqIsyu_xpvfTX-6HOd0=" class="card-img-bottom">
+      <% end %>
+    </div>
+  </div>
+  <% appliances.each do |appliance| %>
+    <div class="col-md-4">
+      <%= render "appliances/appliance", appliance: appliance %>
+    </div>
+  <% end %>
+</div>

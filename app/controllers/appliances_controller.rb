@@ -17,12 +17,20 @@ class AppliancesController < ApplicationController
     @appliance = Appliance.new
     @possible_appliance_types = ["Air Conditioner","Water Heater","Sump Pump","Furnace","Range","Oven",
                                 "Stove","Microwave","Dishwasher","Washing Machine","Dryer","Other"]
+    respond_to do |format|
+      format.html
+      format.js
+    end
   end
 
   # GET /appliances/1/edit
   def edit
     @possible_appliance_types = ["Air Conditioner","Water Heater","Sump Pump","Furnace","Range","Oven",
                                 "Stove","Microwave","Dishwasher","Washing Machine","Dryer","Other"]
+    respond_to do |format|
+      format.html
+      format.js
+    end
   end
 
   # POST /appliances or /appliances.json
@@ -35,6 +43,7 @@ class AppliancesController < ApplicationController
       if @appliance.save
         format.html { redirect_to appliance_url(@appliance), notice: "Appliance was successfully created." }
         format.json { render :show, status: :created, location: @appliance }
+        format.js
       else
         format.html { render :new, status: :unprocessable_entity }
         format.json { render json: @appliance.errors, status: :unprocessable_entity }
@@ -48,6 +57,7 @@ class AppliancesController < ApplicationController
       if @appliance.update(appliance_params)
         format.html { redirect_to appliance_url(@appliance), notice: "Appliance was successfully updated." }
         format.json { render :show, status: :ok, location: @appliance }
+        format.js
       else
         format.html { render :edit, status: :unprocessable_entity }
         format.json { render json: @appliance.errors, status: :unprocessable_entity }
@@ -62,6 +72,7 @@ class AppliancesController < ApplicationController
     respond_to do |format|
       format.html { redirect_to appliances_url, notice: "Appliance was successfully destroyed." }
       format.json { head :no_content }
+      format.js
     end
   end
 
