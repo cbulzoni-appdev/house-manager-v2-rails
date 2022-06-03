@@ -17,6 +17,10 @@ class AppliancesController < ApplicationController
     @appliance = Appliance.new
     @possible_appliance_types = ["Air Conditioner","Water Heater","Sump Pump","Furnace","Range","Oven",
                                 "Stove","Microwave","Dishwasher","Washing Machine","Dryer","Other"]
+    respond_to do |format|
+      format.html
+      format.js
+    end
   end
 
   # GET /appliances/1/edit
